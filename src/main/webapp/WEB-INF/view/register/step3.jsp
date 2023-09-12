@@ -15,7 +15,7 @@
         </spring:message>
     </p>
     <p>
-        <a href="<c:url value='/'/>">
+        <a href="<c:url value='/'/>"> 
             [<spring:message code="go.main" />]
         </a>
     </p>
