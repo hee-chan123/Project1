@@ -48,7 +48,7 @@ public class NoticeDao {
 	}
 	
 	public List<Notice> selectAll() {
-		List<Notice> results = jdbcTemplate.query("select * from NOTICE order by id desc", new NoticeRowMapper());
+		List<Notice> results = jdbcTemplate.query("select * from NOTICE", new NoticeRowMapper());
 		return results;
 	}
 	
