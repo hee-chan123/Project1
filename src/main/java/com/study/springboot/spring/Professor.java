@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor //자동생성기 시발것
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
