@@ -51,7 +51,7 @@ public class PLoginController {
             PAuthInfo pAuthInfo = authServiceP.authenticateP(
                     pLoginCommand.getPnum(),
                     pLoginCommand.getPassword());
-            
+             
             session.setAttribute("pAuthInfo", pAuthInfo);
 
 			Cookie rememberCookie = 
