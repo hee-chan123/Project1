@@ -8,7 +8,7 @@
 <title>공지사항 목록</title>
 </head>
 <body>
-<a href="/main">메인으로</a>
+<a href="/index2">메인으로</a>
 <h1>공지사항 목록</h1>
 <%int num=1; %>
 <table border="1">
