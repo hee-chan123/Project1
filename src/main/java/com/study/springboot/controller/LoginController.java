@@ -63,7 +63,7 @@ public class LoginController {
 			}
 			response.addCookie(rememberCookie);
 			session.setAttribute("user", loginCommand.getSnum());
-			session.setAttribute("password", loginCommand.getPassword());
+			session.setAttribute("password", loginCommand.getPassword()); 
 			
 			
             return "login/loginSuccess";
