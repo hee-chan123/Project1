@@ -7,7 +7,7 @@
 <title>공지사항 보기</title>
 </head>
 <body>
-<a href="/">메인으로</a>
+<a href="/index2">메인으로</a>
 <a href="/notice">목록으로</a>
 
 <h1>공지사항 상세 내용</h1>
