@@ -51,30 +51,6 @@ public class SubjectGradeController {
 		model.addAttribute("gradeCommands", gradeCommands);
 		return "credit/sumGrade";
 	}
-
-//	@PostMapping("/credit/sumGrade")//@RequestParam("snum") String snum @ModelAttribute("gradeCommand") List<GradeCommand> gradeCommand, 
-//	public String test2(Model model, HttpSession session){
-//		String snum = (String) session.getAttribute("user");
-//		List<GradeCommand> gradeCommands = new ArrayList<>();
-//		int maxYear = subjectGradeDao.maxYear(snum);
-//		int minYear = subjectGradeDao.minYear(snum);
-//		
-//		for(int i = maxYear; i >= minYear; i--) {
-//			int countTerm = subjectGradeDao.countTerm(snum, i+"");
-//			for(int j = countTerm; j >= 1; j--) {
-//				int sub = subjectGradeDao.countSub(snum, i+"", j+"");
-//				int sumCredit = subjectGradeDao.sumCredit(snum, i+"", j+"");
-//				int getCredit = subjectGradeDao.getCredit(snum, i+"", j+"");
-//				gradeCommands.add(new GradeCommand(""+i, j+"", sub, sumCredit, getCredit));
-//			}
-//		}
-//		
-//		model.addAttribute("snum", snum);
-//		model.addAttribute("gradeCommands", gradeCommands);
-//		return "credit/sumGrade";
-//	}
-	
-	// ****************************************************************************************
 	
 	@GetMapping("/credit/grade")
 	public String grade(@RequestParam("snum")String snum, Model model,
@@ -97,10 +73,5 @@ public class SubjectGradeController {
 		
 		return "credit/grade";
 	}
-	
-//	@PostMapping("/test/ggrade")
-//	public String grade2(@ModelAttribute("grades") List<SubjectGrade> grades,
-//						 @ModelAttribute("names") List<GradeCommand> names) {
-//		return "test/gradeTest";
-//	}
+
 }
