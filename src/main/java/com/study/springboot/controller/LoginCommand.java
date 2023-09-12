@@ -2,7 +2,7 @@ package com.study.springboot.controller;
 
 public class LoginCommand {
 
-	private String Snum;
+	private String Snum; 
 	private String password;
 	private boolean rememberSnum;
 
