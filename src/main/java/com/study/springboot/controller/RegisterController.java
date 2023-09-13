@@ -62,22 +62,25 @@ public class RegisterController {
 
 	@PostMapping("/register/step3")
 	public String handleStep3(@ModelAttribute("registerRequest") @Valid RegisterRequest regReq, Errors errors) {
-		log.info("------------"+ regReq);
-		//new RegisterRequestValidator().validate(regReq, errors);
-		if (errors.hasErrors()) 
-		{
-			log.info("------------여기");
-			return "register/step2";
-		}
-			
+	    log.info("------------" + regReq);
 
-		try {
-			studentRegisterService.regist(regReq);
-			return "register/step3";
-		} catch (DuplicateStudentException ex) {
-			errors.rejectValue("email", "duplicate");
-			return "register/step2";
-		}
+	    // 비밀번호와 비밀번호 확인 필드 검사
+	    if (!regReq.getPassword().equals(regReq.getConfirmPassword())) {
+	        errors.rejectValue("confirmPassword", "passwordMismatch", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+	    }
+
+	    if (errors.hasErrors()) {
+	        log.info("------------여기");
+	        return "register/step2";
+	    }
+
+	    try {
+	        studentRegisterService.regist(regReq);
+	        return "register/step3";
+	    } catch (DuplicateStudentException ex) {
+	        errors.rejectValue("email", "duplicate");
+	        return "register/step2";
+	    }
 	}
 	
 	@GetMapping("/index2")
