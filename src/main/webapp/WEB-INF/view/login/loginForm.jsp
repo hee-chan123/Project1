@@ -79,7 +79,7 @@
 <div id="center">
     <a href="index"><img src="image/logo.png"></a>
     <form:form modelAttribute="loginCommand" class="login-form">
-        <form:errors />
+
         <div id="grid">
             <div>
                 <label for="snum"><spring:message code="snum" /></label>
@@ -98,8 +98,9 @@
             </div>
         </div>
         <form:errors path="password" style="margin-left : 25px"/>
+        <form:errors />
         <p>
-            <input type="checkbox" id="rememberSnum" name="rememberSnum" class="input-field"/>
+            <input type="checkbox" id="rememberSnum" name="rememberSnum" class="input-field" value="true"/>
             <label class="checkbox-label" for="rememberSnum"><spring:message code="rememberSnum" /></label>
         </p>
         <input type="submit" value="<spring:message code="login.btn" />" class="submit-button">
