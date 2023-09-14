@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.study.springboot.spring.Student;
+import com.study.springboot.spring.StudentDao;
 import com.study.springboot.spring.SubjectGrade;
 import com.study.springboot.spring.SubjectGradeDao;
 
@@ -24,9 +26,13 @@ public class SubjectGradeController {
 	@Autowired
 	SubjectGradeDao subjectGradeDao;
 	
+	@Autowired
+	StudentDao studentDao;
+	
 	@GetMapping("/credit/sumGrade")
 	public String test(HttpSession session, Model model) {
 		String snum = (String) session.getAttribute("user");
+		Student student = studentDao.selectBySnum(snum);
 		List<GradeCommand> gradeCommands = new ArrayList<>();
 		int maxYear = subjectGradeDao.maxYear(snum);
 		int minYear = subjectGradeDao.minYear(snum);
@@ -47,31 +53,34 @@ public class SubjectGradeController {
 			}
 		}
 		
+		model.addAttribute("student", student);
 		model.addAttribute("snum", snum);
 		model.addAttribute("gradeCommands", gradeCommands);
 		return "credit/sumGrade";
 	}
-	
-	@GetMapping("/credit/grade")
-	public String grade(@RequestParam("snum")String snum, Model model,
-						@RequestParam("year")String year,
-						@RequestParam("term")String term) {
-		List<SubjectGrade> grades = subjectGradeDao.selectGrade(snum, year, term);
-		List<NamesCommand> names = new ArrayList<>();
-		List<String> pname = subjectGradeDao.getProName(snum, year, term);
-		List<String> sname = subjectGradeDao.getSubName(snum, year, term);		
-		int countG = subjectGradeDao.countG(snum, year, term);
-		
-		
-		for(int i = 1; i <= countG; i++) {
-			names.add(new NamesCommand(pname.get(i-1), sname.get(i-1)));
-		}
-		
-		model.addAttribute("grades", grades);
-		model.addAttribute("names", names);
-		
-		
-		return "credit/grade";
-	}
 
+	@GetMapping("/credit/grade")
+		public String grade(@RequestParam("snum")String snum, Model model,
+							@RequestParam("year")String year,
+							@RequestParam("term")String term) {
+			List<SubjectGrade> grades = subjectGradeDao.selectGrade(snum, year, term);
+			List<NamesCommand> names = new ArrayList<>();
+			List<String> pnames = subjectGradeDao.getProName(snum, year, term);
+			List<String> snames = subjectGradeDao.getSubName(snum, year, term);
+			List<String> credits = subjectGradeDao.selectCredit(snum, year, term);
+			Student student = studentDao.selectBySnum(snum);
+			int countG = subjectGradeDao.countG(snum, year, term);
+			
+			
+			for(int i = 1; i <= countG; i++) {
+				names.add(new NamesCommand(pnames.get(i-1), snames.get(i-1)));
+			}
+			
+			model.addAttribute("student", student);
+			model.addAttribute("grades", grades);
+			model.addAttribute("names", names);
+			model.addAttribute("credits", credits);
+			
+			return "credit/grade";
+	}
 }
