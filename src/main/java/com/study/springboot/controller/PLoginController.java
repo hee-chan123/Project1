@@ -72,10 +72,4 @@ public class PLoginController {
             return "loginP/loginForm";
         }
     }
-	    
-	@GetMapping("/index")
-   	 public String index() {
-       	 return "index";
-    }
-    
 }
