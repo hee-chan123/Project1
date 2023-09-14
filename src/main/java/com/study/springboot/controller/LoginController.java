@@ -18,7 +18,6 @@ import com.study.springboot.spring.WrongIdPasswordException;
 
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
@@ -28,7 +27,7 @@ public class LoginController {
 //        this.authService = authService;
 //    }
 
-    @GetMapping
+    @GetMapping("/login")
     public String form(LoginCommand loginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
 		if (rCookie != null) {
@@ -38,7 +37,7 @@ public class LoginController {
     	return "login/loginForm";
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public String submit(
     		LoginCommand loginCommand, Errors errors, HttpSession session,
     		HttpServletResponse response) {
@@ -72,5 +71,9 @@ public class LoginController {
             return "login/loginForm";
         }
     }
-    
+
+@GetMapping("/index")
+    public String index() {
+        return "index";
+    }
 }
