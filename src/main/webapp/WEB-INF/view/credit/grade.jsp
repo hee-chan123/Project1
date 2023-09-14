@@ -177,7 +177,7 @@ section.grade {
 		<div id="grade-list">
 			<div class="container">
 				<table class="grade-table">
-				<div class="sname" >[${student.sname}][${student.status}][${student.major}]</div>
+				<div class="sname" >이름 : [${student.sname}] 상태 : [${student.status}] 전공 : [${student.major}]</div>
 					<thead>
 						<tr>
 							<th scope="col" class="th-year">연도</th>
