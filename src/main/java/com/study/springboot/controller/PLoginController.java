@@ -64,6 +64,7 @@ public class PLoginController {
 			}
 			response.addCookie(rememberCookie);
 			session.setAttribute("user", pLoginCommand.getPnum());
+			session.setAttribute("password", pLoginCommand.getPassword());
 			
             return "loginP/loginSuccess";
             
