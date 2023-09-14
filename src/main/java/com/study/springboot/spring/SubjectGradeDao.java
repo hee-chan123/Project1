@@ -147,6 +147,19 @@ public class SubjectGradeDao {
 		return jdbcTemplate.queryForObject(sql, Integer.class, snum, year, term);
 	}
 	
+	public List<String> selectCredit(String snum, String year, String term) { //강의 학점
+		String sql = "select credit "
+				+ "from subject "
+				+ "where subnum in (select subnum "
+				+ "				from subjectgrade "
+				+ "				where snum = ? and year = ? and term = ?)";
+		List<String> credits = jdbcTemplate.query(sql, (rs, r) -> {
+			String credit = rs.getString("credit");
+			return credit;
+		}, snum, year, term);
+		return credits;
+	}
+	
 	public int updateStudent(SubjectGrade subjectgrade) { // 개인정보 수정
 		String sql = "UPDATE subjectgrade SET midtermgrade = ?, finalgrade = ?, Attendancedate = ?, grade = ? WHERE snum = ? and subnum = ?";
 		return this.jdbcTemplate.update(sql,subjectgrade.getMidtermGrade(),subjectgrade.getFinalGrade(),subjectgrade.getAttendanceDate()
