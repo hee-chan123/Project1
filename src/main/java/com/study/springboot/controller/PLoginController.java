@@ -19,7 +19,6 @@ import com.study.springboot.spring.WrongIdPasswordException;
 
 
 @Controller
-@RequestMapping("/loginP")
 public class PLoginController {
 	
 	@Autowired
@@ -29,7 +28,7 @@ public class PLoginController {
 //        this.authService = authService;
 //    }
 
-    @GetMapping
+    @GetMapping("/loginP")
     public String form(@ModelAttribute("pLoginCommand") PLoginCommand pLoginCommand,
     		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
 		if (rCookie != null) {
@@ -39,7 +38,7 @@ public class PLoginController {
     	return "loginP/loginForm";
     }
 
-    @PostMapping
+    @PostMapping("/loginP")
     public String submit(
     		PLoginCommand pLoginCommand, Errors errors, HttpSession session,
     		HttpServletResponse response) {
@@ -72,6 +71,11 @@ public class PLoginController {
             errors.reject("idPasswordNotMatching");
             return "loginP/loginForm";
         }
+    }
+	    
+	@GetMapping("/index")
+   	 public String index() {
+       	 return "index";
     }
     
 }
